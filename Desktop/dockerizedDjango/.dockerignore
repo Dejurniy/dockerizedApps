@@ -1,7 +1,0 @@
-.DS_Store
-.env
-.idea/
-docker-compose.yaml
-django_nginx.conf
-favcars.com.pem
-favcars.com-key.pem
