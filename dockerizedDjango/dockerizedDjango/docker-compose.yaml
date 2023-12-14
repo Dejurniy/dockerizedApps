@@ -1,0 +1,37 @@
+version: '3'
+services:
+  django:
+    image: dejurniy/pythonapi:v1
+    container_name: django
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    volumes:
+      - ./db_files:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 3306:3306
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./django_nginx.conf:/etc/nginx/conf.d/django_nginx.conf
+      - ./viksscars.com.pem:/etc/ssl/viksscars.com.pem
+      - ./viksscars.com-key.pem:/etc/ssl/viksscars.com-key.pem
+    ports:
+      - '80:80'
+      - '443:443'
+
