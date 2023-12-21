@@ -94,7 +94,7 @@ server {
 ```
 
 ### 4. Configure Docker Compose
-After all, configure Docker Compose. Use the 1.29.2 version of Docker Compose.
+After all, configure Docker Compose. Use the 1.29.2 version of Docker Compose. All the variablse in the configuration are from .env file.
 ```
 version: '3'
 services:
